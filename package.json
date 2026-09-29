@@ -4,6 +4,26 @@
   "version": "0.1.0",
   "type": "module",
   "description": "Local-first, human-governed workspace for AI evaluation analysts: review journal, candidate-pattern escalation, and traceable escalation drafts. Offline. No network calls.",
+  "license": "MIT",
+  "author": "John Pabrua",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alchemyflownode/ai-evaluation-workbench.git"
+  },
+  "homepage": "https://github.com/alchemyflownode/ai-evaluation-workbench#readme",
+  "bugs": {
+    "url": "https://github.com/alchemyflownode/ai-evaluation-workbench/issues"
+  },
+  "keywords": [
+    "ai-evaluation",
+    "evaluation",
+    "annotation",
+    "human-in-the-loop",
+    "local-first",
+    "offline",
+    "typescript",
+    "react"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",

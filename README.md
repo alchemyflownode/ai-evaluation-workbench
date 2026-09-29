@@ -1,5 +1,9 @@
 # AI Evaluation Workbench
 
+[![CI](https://github.com/alchemyflownode/ai-evaluation-workbench/actions/workflows/ci.yml/badge.svg)](https://github.com/alchemyflownode/ai-evaluation-workbench/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Witness: 45/47](https://img.shields.io/badge/witness-45%2F47%20(2%20open)-orange.svg)](witness/witness-report.json)
+
 > Local-first, human-governed workspace for an AI **evaluation analyst**.
 > Version 0.1 — MVP. Offline. No network calls.
 
@@ -102,6 +106,16 @@ witness/
 
 ---
 
+## Documentation
+
+| Document | What it covers |
+| --- | --- |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | Development setup, the evidence rule, commit and PR conventions |
+| [SECURITY.md](SECURITY.md) | Threat model, what is and is not defended, how to report |
+| [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) | Community standards |
+| [CHANGELOG.md](CHANGELOG.md) | Notable changes, including the known issues |
+| [witness/witness-report.json](witness/witness-report.json) | Raw behavioural evidence: 47 checks, 8 observations |
+
 ## Run
 
 ```bash
@@ -157,6 +171,28 @@ start.bat install
 | 8 | Export & delete personal records | `ExportPanel` JSON/CSV/MD + delete-all |
 
 ---
+
+## Claims ? evidence
+
+Every claim this project makes, and where you can check it yourself. This section
+is the point of the repository: an evaluation tool that overstates its own
+verification has no business evaluating anything else.
+
+| Claim | Evidence | How to check |
+| --- | --- | --- |
+| No network calls, ever | `tools/no-network-scan.mjs`; witness check "NO external network requests during the whole journey (runtime)" | `npm run audit:offline` |
+| Grouping is deterministic and local, no model involved | `src/pattern.ts` `normalizeTag()` / `derivePatterns()` | read the file; it imports no model and calls nothing |
+| The two long `off-by-one` forms land in one candidate; the short form stands alone | witness check "D5/grouping"; screenshot `witness/state-04-patterns.png` | `node witness/witness.mjs` |
+| Human confirmation gates escalation — no draft exists before a human confirms | witness checks "NO draft control exists before any confirmation" and "draft control appears ONLY after confirmation" | same |
+| Every draft claim traces to exact source records | witness check "trace ids point at the real formatting-drift records" ? `demo_006, demo_007, demo_008` | same; also the Markdown report |
+| `taskContent` is excluded from default exports | witness checks D1a–D1c; `src/exporters.ts` `includeContent` gate | same |
+| The app survives a 390px viewport without horizontal overflow | witness check "no horizontal page overflow at 390px"; `witness/state-08-mobile-390.png` | same |
+| Types are strict, with no unused locals or params | `tsconfig.json`; CI step "Typecheck" | `npm run typecheck` |
+| The build produces a real, offline bundle | CI step "Smoke test the built output" | `npm run build` then inspect `dist/index.html` |
+
+**What is *not* claimed:** the witness currently passes 45 of 47 checks. The two
+open findings (D3, D4) are listed below and in `witness/witness-report.json`.
+Nothing in this README asserts a clean pass.
 
 ## Verification & honest limits
 
