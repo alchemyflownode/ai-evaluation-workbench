@@ -6,6 +6,10 @@
   "scripts": {
     "build": "node witness.mjs",
     "test": "node witness.mjs",
-    "witness": "node witness.mjs"
+    "witness": "node witness.mjs",
+    "postinstall": "playwright install chromium"
+  },
+  "devDependencies": {
+    "playwright": "^1.63.0"
   }
 }

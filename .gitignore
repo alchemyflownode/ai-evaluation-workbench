@@ -40,3 +40,12 @@ witness/node_modules/
 witness/.cache/
 witness/*.trace.zip
 witness/trace/
+
+# Local scratch: ad-hoc instrument copies and their reports (leading underscore),
+# plus the transient pre-edit backups a careful edit leaves behind.
+witness/_*
+.fin-backup-*/
+*.bak
+*.orig
+*.rej
+

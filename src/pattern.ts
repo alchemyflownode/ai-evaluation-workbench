@@ -15,8 +15,12 @@ export type { ConfirmedGroup, PatternCandidate } from './types';
  * It does NOT call a model and does NOT decide anything. It groups the analyst's own
  * reason tags by a normalized signature (lowercased, punctuation stripped, stopwords
  * removed, tokens sorted) so that spelling and word-order variants land together —
- * e.g. "off-by-one error", "off-by-one" and "error off by one" share one signature.
+ * e.g. "off-by-one error" and "error off by one" both normalize to "error off one"
+ * and share one signature.
  *
+ * NOTE on a previously wrong claim: "off-by-one" does NOT join them. "by" is a
+ * stopword, so it normalizes to "off one" and forms a SEPARATE candidate. Measured
+ * behaviour, not intent.
  * Everything the engine produces is a CANDIDATE. Whether it means anything is the
  * human's decision, recorded in `patternDecisions`.
  */

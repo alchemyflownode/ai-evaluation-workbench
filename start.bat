@@ -174,7 +174,7 @@ goto finish
 :act_install
 echo.
 echo [*] Installing dependencies into this folder...
-echo     Note: this project normally resolves them from the workspace root.
+echo     This is a standalone app; dependencies install into this folder.
 echo.
 call npm install
 set "RC=%ERRORLEVEL%"
@@ -237,8 +237,8 @@ if exist "node_modules\vite" (
   echo   Deps   :  local node_modules
   exit /b 0
 )
-if exist "..\..\..\node_modules\vite" (
-  echo   Deps   :  workspace root node_modules  [normal]
+if exist "..\node_modules\vite" (
+  echo   Deps   :  parent-folder node_modules
   exit /b 0
 )
 echo   Deps   :  MISSING  -- choose [5] Install / repair deps, or npm will fetch them

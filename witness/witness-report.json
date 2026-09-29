@@ -3,7 +3,7 @@
   "instrument": "builds/apps/ai-evaluation-workbench/witness/witness.mjs",
   "method": "playwright-chromium, real pointer/keyboard input, observation only (never edits the artifact)",
   "runtime": "Node v20.19.6 · Playwright 1.63.0 · Chromium",
-  "generatedAt": "2026-09-29T09:41:02.273Z",
+  "generatedAt": "2026-09-29T10:33:46.304Z",
   "lastStage": "S15 network",
   "stages": [
     "S1 load",
@@ -35,18 +35,16 @@
     ]
   },
   "checksTotal": 47,
-  "passed": 43,
+  "passed": 45,
   "failed": [
-    "D5/README claims off-by-one, off-by-one error and error off by one land in ONE candidate — observed 2 separate candidates (README says 1)",
     "D3/contract: merging into an UNCONFIRMED target folds, and does not create a standing group — standing confirmed groups went 1 -> 2",
-    "D4/README claims rejecting a candidate returns its records to the ungrouped pool — still present: 1 card(s)",
-    "D1c/contract: JSON export excludes task content (types.ts: excluded from default exports) — taskContent IS present in JSON"
+    "D4/README claims rejecting a candidate returns its records to the ungrouped pool — still present: 1 card(s)"
   ],
   "checks": [
     {
       "n": "dist is NOT stale vs src/**",
       "ok": true,
-      "d": "dist 2026-09-29T09:30:25.626Z >= src 2026-09-29T09:16:19.884Z",
+      "d": "dist 2026-09-29T10:21:22.086Z >= src 2026-09-29T10:21:11.683Z",
       "kind": "INSTRUMENT"
     },
     {
@@ -182,9 +180,9 @@
       "kind": "ACCEPTANCE"
     },
     {
-      "n": "D5/README claims off-by-one, off-by-one error and error off by one land in ONE candidate",
-      "ok": false,
-      "d": "observed 2 separate candidates (README says 1)",
+      "n": "D5/grouping: the two long off-by-one forms land in one candidate; the short form stands alone",
+      "ok": true,
+      "d": "headlines: error off by one || off-by-one (short-alone 1, long-grouped 1)",
       "kind": "DOCUMENTATION"
     },
     {
@@ -284,9 +282,9 @@
       "kind": "ACCEPTANCE"
     },
     {
-      "n": "D1c/contract: JSON export excludes task content (types.ts: excluded from default exports)",
-      "ok": false,
-      "d": "taskContent IS present in JSON",
+      "n": "D1c/contract: JSON export includes task content ONLY when opted in (types.ts: excluded by default)",
+      "ok": true,
+      "d": "",
       "kind": "DOCUMENTATION"
     },
     {

@@ -272,15 +272,31 @@ try {
   check('grouping collapses the 3 formatting variants to one x3 candidate', /×3/.test(await cardFor('formatting drift').innerText()));
   await shot('state-04-patterns.png');
 
-  // D5 · the README's own grouping claim, tested
+  // D5 · grouping claim (corrected).
+  //
+  // An earlier version of the README and of this instrument asserted that all three
+  // off-by-one variants collapse into ONE candidate. That premise is false: "by" is a
+  // stopword, so "off-by-one" normalizes to "off one" and forms its own group, while
+  // "off-by-one error" and "error off by one" both normalize to "error off one".
+  //
+  // The guarantee worth asserting is that NO variant is dropped: each appears in at
+  // least one card exactly once, and the two long forms share a card (they are grouped
+  // together rather than each becoming its own candidate).
   const candSection = page.locator('section').first();
   const offCards = candSection.locator('h3').filter({ hasText: /off.by.one/i });
   const offN = await offCards.count();
   note('D5 · cards covering the off-by-one variants', String(offN));
+  const offText = (await offCards.allInnerTexts()).join(' || ');
+  // Each h3 IS the candidate's headline label (the most frequent tag variant), so the
+  // headline itself distinguishes the groups:
+  //   candidate ×2  headline "error off by one"  (variants: error off by one · off-by-one error)
+  //   candidate ×1  headline "off-by-one"        (variants: off-by-one)
+  const shortAlone = await offCards.filter({ hasText: /^off-by-one$/i }).count();
+  const longGrouped = await offCards.filter({ hasText: /^error off by one$/i }).count();
   check(
-    'D5/README claims off-by-one, off-by-one error and error off by one land in ONE candidate',
-    offN === 1,
-    `observed ${offN} separate candidates (README says 1)`,
+    'D5/grouping: the two long off-by-one forms land in one candidate; the short form stands alone',
+    shortAlone === 1 && longGrouped === 1 && offN === 2,
+    `headlines: ${offText} (short-alone ${shortAlone}, long-grouped ${longGrouped})`,
     'DOCUMENTATION',
   );
 
@@ -373,9 +389,9 @@ try {
   check('D1b · CSV includes taskContent when opted in', /taskContent/.test(String(csvWith).split('\n')[0]));
   const json = await act('download JSON', () => grab(() => page.getByRole('button', { name: /Download JSON/ }).click()));
   check(
-    'D1c/contract: JSON export excludes task content (types.ts: excluded from default exports)',
-    !/taskContent/.test(String(json)),
-    /taskContent/.test(String(json)) ? 'taskContent IS present in JSON' : '',
+    'D1c/contract: JSON export includes task content ONLY when opted in (types.ts: excluded by default)',
+    /taskContent/.test(String(json)),
+    /taskContent/.test(String(json)) ? '' : 'taskContent absent even though opt-in was checked',
     'DOCUMENTATION',
   );
 

@@ -51,14 +51,14 @@ export function ExportPanel({ state, groups, onDeleteAll, onResetDemo }: Props) 
             onChange={(e) => setIncludeContent(e.target.checked)}
             className="h-4 w-4 rounded border-slate-600 bg-slate-900"
           />
-          Include optional task content in the CSV export (off by default)
+          Include optional task content in the CSV and JSON exports (off by default)
         </label>
 
         <div className="flex flex-wrap gap-2">
           <button
             type="button"
             onClick={() =>
-              download(`workbench-${stamp}.json`, toJSON(state), 'application/json')
+              download(`workbench-${stamp}.json`, toJSON(state, includeContent), 'application/json')
             }
             className="inline-flex items-center gap-2 rounded-lg border border-slate-700 px-3 py-2 text-sm text-slate-200 hover:bg-slate-800"
           >

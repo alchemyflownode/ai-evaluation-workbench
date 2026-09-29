@@ -2,9 +2,20 @@ import type { ConfirmedGroup } from './pattern';
 import type { EscalationDraft, ReviewRecord, WorkbenchState } from './types';
 import { formatDate } from './util';
 
-/** Full local state as pretty JSON. */
-export function toJSON(state: WorkbenchState): string {
-  return JSON.stringify(state, null, 2);
+/**
+ * Full local state as pretty JSON.
+ *
+ * `taskContent` is STRIPPED by default, matching `toCSV` and the doctrine in
+ * `types.ts`: optional task material must never leave the app as a side effect of
+ * a routine export. Pass `includeContent: true` for a deliberate full backup.
+ *
+ * NOTE: this output is download-only; the app never re-imports it, so stripping
+ * here cannot silently drop data from a round-trip.
+ */
+export function toJSON(state: WorkbenchState, includeContent = false): string {
+  if (includeContent) return JSON.stringify(state, null, 2);
+  const records = state.records.map(({ taskContent: _taskContent, ...rest }) => rest);
+  return JSON.stringify({ ...state, records }, null, 2);
 }
 
 function csvCell(value: string): string {
