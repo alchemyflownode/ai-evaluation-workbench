@@ -1,0 +1,29 @@
+{
+  "name": "@dreamphase/ai-evaluation-workbench",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Local-first, human-governed workspace for AI evaluation analysts: review journal, candidate-pattern escalation, and traceable escalation drafts. Offline. No network calls.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "audit:offline": "node tools/no-network-scan.mjs",
+    "verify": "npm run typecheck && npm run audit:offline"
+  },
+  "dependencies": {
+    "lucide-react": "^0.546.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.14",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^5.0.4",
+    "tailwindcss": "^4.1.14",
+    "typescript": "~5.8.3",
+    "vite": "^6.3.5"
+  }
+}

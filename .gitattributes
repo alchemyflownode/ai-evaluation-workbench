@@ -1,0 +1,25 @@
+# Normalize line endings in the repository to LF regardless of contributor OS.
+# Without this, Windows checkouts (core.autocrlf=true) rewrite every source file
+# on commit and the working tree shows spurious modifications after a fresh clone.
+* text=auto eol=lf
+
+# Windows scripts must keep CRLF or cmd.exe mis-parses them.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# PowerShell tolerates either, but be explicit.
+*.ps1 text eol=lf
+
+# Never touch binaries: the witness evidence screenshots are committed on purpose.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.pdf binary
+*.zip binary
+*.woff binary
+*.woff2 binary
+
+# Keep the behavioral witness report diffable and reviewable.
+witness/witness-report.json text eol=lf

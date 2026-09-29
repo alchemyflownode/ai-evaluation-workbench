@@ -1,0 +1,366 @@
+{
+  "mission": "ai-evaluation-workbench :: v0.1 behavioral witness",
+  "instrument": "builds/apps/ai-evaluation-workbench/witness/witness.mjs",
+  "method": "playwright-chromium, real pointer/keyboard input, observation only (never edits the artifact)",
+  "runtime": "Node v20.19.6 · Playwright 1.63.0 · Chromium",
+  "generatedAt": "2026-09-29T09:41:02.273Z",
+  "lastStage": "S15 network",
+  "stages": [
+    "S1 load",
+    "S2 create",
+    "S3 edit",
+    "S4 search",
+    "S5 filters",
+    "S6 task-content",
+    "S7 patterns",
+    "S8 gate",
+    "S9 draft+trace",
+    "S10 merge",
+    "S11 reject",
+    "S12 export",
+    "S13 delete+reset",
+    "S14 responsive",
+    "S15 network"
+  ],
+  "url": "http://127.0.0.1:5199/",
+  "viewport": "1440x900 (mobile pass at 390x844)",
+  "contract": {
+    "seededRecords": 14,
+    "demoCandidateKeysAt14": 8,
+    "demoCandidateKeysAt15": 9,
+    "formattingTraceIds": [
+      "demo_006",
+      "demo_007",
+      "demo_008"
+    ]
+  },
+  "checksTotal": 47,
+  "passed": 43,
+  "failed": [
+    "D5/README claims off-by-one, off-by-one error and error off by one land in ONE candidate — observed 2 separate candidates (README says 1)",
+    "D3/contract: merging into an UNCONFIRMED target folds, and does not create a standing group — standing confirmed groups went 1 -> 2",
+    "D4/README claims rejecting a candidate returns its records to the ungrouped pool — still present: 1 card(s)",
+    "D1c/contract: JSON export excludes task content (types.ts: excluded from default exports) — taskContent IS present in JSON"
+  ],
+  "checks": [
+    {
+      "n": "dist is NOT stale vs src/**",
+      "ok": true,
+      "d": "dist 2026-09-29T09:30:25.626Z >= src 2026-09-29T09:16:19.884Z",
+      "kind": "INSTRUMENT"
+    },
+    {
+      "n": "page titles correctly",
+      "ok": true,
+      "d": "AI Evaluation Workbench — DreamPhase",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "S1 discriminator: Journal header",
+      "ok": true,
+      "d": "Review Journal",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "demo.ts seeds 14 synthetic observations",
+      "ok": true,
+      "d": "14",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "filter bar exposes exactly 3 labelled selects",
+      "ok": true,
+      "d": "3",
+      "kind": "INSTRUMENT"
+    },
+    {
+      "n": "create form exposes the reason-tag input",
+      "ok": true,
+      "d": "",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "\"Add observation\" is disabled while the tag is empty",
+      "ok": true,
+      "d": "",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "create adds exactly one record",
+      "ok": true,
+      "d": "14 -> 15",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "the new card renders its tag",
+      "ok": true,
+      "d": "",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "the new card shows its decision badge",
+      "ok": true,
+      "d": "",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "form is now in Edit mode",
+      "ok": true,
+      "d": "",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "edit persisted to the card",
+      "ok": true,
+      "d": "",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "form closed after save",
+      "ok": true,
+      "d": "",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "search does NOT reach taskContent",
+      "ok": true,
+      "d": "0 card(s) matched \"4,812\"",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "search DOES reach notes",
+      "ok": true,
+      "d": "1",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "every card under decision=reject carries the reject badge",
+      "ok": true,
+      "d": "2 cards",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "every card under ambiguous-only carries the ambiguous badge",
+      "ok": true,
+      "d": "3 cards",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "task content is NOT in the DOM before reveal",
+      "ok": true,
+      "d": "",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "a reveal control exists for the record that has content",
+      "ok": true,
+      "d": "1",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "task content appears only after the human reveals it",
+      "ok": true,
+      "d": "",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "S7 discriminator: Patterns header",
+      "ok": true,
+      "d": "Pattern Escalation",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "candidate count is 9 (8 demo keys + 1 from the probe record)",
+      "ok": true,
+      "d": "9",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "grouping collapses the 3 formatting variants to one x3 candidate",
+      "ok": true,
+      "d": "",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "D5/README claims off-by-one, off-by-one error and error off by one land in ONE candidate",
+      "ok": false,
+      "d": "observed 2 separate candidates (README says 1)",
+      "kind": "DOCUMENTATION"
+    },
+    {
+      "n": "no confirmed patterns yet",
+      "ok": true,
+      "d": "",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "NO draft control exists before any confirmation",
+      "ok": true,
+      "d": "",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "human confirmation creates the group",
+      "ok": true,
+      "d": "",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "draft control appears ONLY after confirmation",
+      "ok": true,
+      "d": "",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "draft created",
+      "ok": true,
+      "d": "",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "draft is NOT auto-approved",
+      "ok": true,
+      "d": "",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "draft title names the human-confirmed pattern",
+      "ok": true,
+      "d": "",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "trace ids point at the real formatting-drift records",
+      "ok": true,
+      "d": "demo_006,demo_007,demo_008",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "every traced id resolves to a real journal record",
+      "ok": true,
+      "d": "demo_006,demo_007,demo_008",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "D3/contract: merging into an UNCONFIRMED target folds, and does not create a standing group",
+      "ok": false,
+      "d": "standing confirmed groups went 1 -> 2",
+      "kind": "DOCUMENTATION"
+    },
+    {
+      "n": "D4/README claims rejecting a candidate returns its records to the ungrouped pool",
+      "ok": false,
+      "d": "still present: 1 card(s)",
+      "kind": "DOCUMENTATION"
+    },
+    {
+      "n": "S12 discriminator: Data header",
+      "ok": true,
+      "d": "Export & Data",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "Markdown carries the confirmed pattern AND its source trace",
+      "ok": true,
+      "d": "",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "Markdown excludes task content",
+      "ok": true,
+      "d": "",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "D1a · CSV omits taskContent by default",
+      "ok": true,
+      "d": "",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "D1b · CSV includes taskContent when opted in",
+      "ok": true,
+      "d": "",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "D1c/contract: JSON export excludes task content (types.ts: excluded from default exports)",
+      "ok": false,
+      "d": "taskContent IS present in JSON",
+      "kind": "DOCUMENTATION"
+    },
+    {
+      "n": "delete-all empties the store",
+      "ok": true,
+      "d": "Evaluation Workbench\n\nHuman judgment · local-first\n\nReview J",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "reset restores the synthetic set",
+      "ok": true,
+      "d": "",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "persisted under the documented localStorage key",
+      "ok": true,
+      "d": "",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "no horizontal page overflow at 390px",
+      "ok": true,
+      "d": "390 > 390",
+      "kind": "SCOPE"
+    },
+    {
+      "n": "NO external network requests during the whole journey (runtime)",
+      "ok": true,
+      "d": "",
+      "kind": "ACCEPTANCE"
+    },
+    {
+      "n": "no console errors",
+      "ok": true,
+      "d": "0",
+      "kind": "ACCEPTANCE"
+    }
+  ],
+  "observations": [
+    {
+      "k": "D5 · cards covering the off-by-one variants",
+      "v": "2"
+    },
+    {
+      "k": "D3 · confirmed groups before -> after merge into unconfirmed target",
+      "v": "1 -> 2"
+    },
+    {
+      "k": "D3 · source card shows a \"merged\" badge",
+      "v": "true"
+    },
+    {
+      "k": "D4 · rejected candidate still listed under \"Candidate patterns\"",
+      "v": "1"
+    },
+    {
+      "k": "Markdown preview length (chars)",
+      "v": "1851"
+    },
+    {
+      "k": "D2 · state preserved when a confirm() is dismissed",
+      "v": "true"
+    },
+    {
+      "k": "S14 · document scrollWidth vs clientWidth at 390px",
+      "v": "390 vs 390"
+    },
+    {
+      "k": "S14 · main column width at 390px (px)",
+      "v": "134"
+    }
+  ],
+  "externalRequests": [],
+  "consoleErrors": [],
+  "verdict": "WITNESS_FAILED"
+}

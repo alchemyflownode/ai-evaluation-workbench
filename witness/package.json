@@ -1,0 +1,11 @@
+{
+  "name": "@dreamphase/ai-evaluation-workbench-witness",
+  "private": true,
+  "type": "module",
+  "description": "Observation-only browser witness for the AI Evaluation Workbench. Never edits the artifact.",
+  "scripts": {
+    "build": "node witness.mjs",
+    "test": "node witness.mjs",
+    "witness": "node witness.mjs"
+  }
+}
